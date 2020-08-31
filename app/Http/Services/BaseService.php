@@ -3,9 +3,6 @@
 
 namespace App\Http\Services;
 
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Contracts\Validation\Validator as ContractsValidator;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -95,35 +92,6 @@ class BaseService
         return $this->returnResponse(Response::HTTP_OK);
     }
 
-    /**
-     * Return forbidden error
-     *
-     * @param null $errorMessage
-     *
-     * @return JsonResponse
-     */
-    protected function returnForbidden($errorMessage = null)
-    {
-        $this->responseType = self::RESPONSE_ERROR;
-        $this->errorMessage = $errorMessage ? $errorMessage : 'errors.forbidden';
-
-        return $this->returnResponse(Response::HTTP_OK);
-    }
-
-    /**
-     * Return token error.
-     *
-     * @param null $errorMessage
-     *
-     * @return JsonResponse
-     */
-    protected function returnTokenError($errorMessage = null)
-    {
-        $this->responseType = self::RESPONSE_ERROR;
-        $this->errorMessage = $errorMessage ? $errorMessage : 'errors.token';
-
-        return $this->returnResponse(Response::HTTP_OK);
-    }
 
     /**
      * Return unknown error.
@@ -144,16 +112,14 @@ class BaseService
      * Return success.
      *
      * @param null $data
-     * @param null $pagination
      *
      * @return JsonResponse
      */
-    protected function returnSuccess($data = null, $pagination = null)
+    protected function returnSuccess($data = null)
     {
         $this->responseType = self::RESPONSE_SUCCESS;
         $this->data = [
             'result' => $data,
-            'pagination' => $pagination
         ];
 
         return $this->returnResponse();

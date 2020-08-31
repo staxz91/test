@@ -13,6 +13,7 @@ $(document).on('click', '.ajax-submit', function (e) {
     let form = $(this).closest('form');
     $('.with-error').removeClass('with-error');
     $('.error-span').remove();
+    $('.response-data').html('...');
 
     $.ajax({
         type: 'POST',
@@ -21,8 +22,18 @@ $(document).on('click', '.ajax-submit', function (e) {
         success: function (res) {
             // SUCCESS
             if (res.responseType == 'success') {
+                $('.status').html(` Status: ${res.data.result.status} `);
+                $('.response-time').html(`${res.data.result.time} ms`);
+                $('.general-error').html('');
 
             } else {
+                console.log(res);
+                if (res.errorMessage && res.errorMessage.error) {
+                    $('.status').html(`Status: ${res.errorMessage.status}`);
+                    $('.response-time').html(`${res.errorMessage.time} ms`);
+                    $('.general-error').html(res.errorMessage.error);
+                }
+
                 for (var key in res.errorMessage) {
                     if (res.errorMessage[key] && $(`[name=${key}]`).length) {
                         form.find(`[name=${key}]`).addClass('with-error');

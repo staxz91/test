@@ -74,10 +74,10 @@ class ProxyService extends BaseService
             $newProxyTest = new ProxyTest($data);
             $recordId = $newProxyTest->save();
             $time_end = microtime(true);
-            $execution_time = ($time_end - $time_start);
+            $execution_time = round(($time_end - $time_start) * 1000); ;
 
             if ($error) {
-                return $this->returnError(['status' => $http_status, 'error' => $error]);
+                return $this->returnError(['status' => $http_status, 'error' => $error, 'time' => $execution_time]);
             }
 
             return $this->returnSuccess(['status' => $http_status, 'time' => $execution_time, 'recordId' => $recordId]);

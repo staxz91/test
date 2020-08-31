@@ -13,6 +13,15 @@
     <body>
         <div class="flex-center position-ref full-height container">
 
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>Tested with:</p>
+                    <p>url: http://www.google.com</p>
+                    <p>ip: 173.212.202.65</p>
+                    <p> port 80</p>
+                </div>
+            </div>
+
             <div class="row mt-5">
                 <div class="form-container col-sm-8">
                     <h1>Proxy Tester</h1>
@@ -54,9 +63,9 @@
                 <div class="col-sm-4">
                     <div class="result-container">
                         <div class="row">
-                            <div class="results status col-sm-12 text-center"><h3 class="response-data">Status</h3></div>
-                            <div class="results response-time col-sm-12 text-center"><h1 class="response-data">Time ms</h1></div>
-                            <div class="results general-error col-sm-12 text-center"></div>
+                            <div class=" col-sm-12 text-center"><h3 class="response-data status">Status</h3></div>
+                            <div class=" col-sm-12 text-center"><h1 class="response-data response-time">Time ms</h1></div>
+                            <div class="response-data general-error col-sm-12 text-center"></div>
                         </div>
                     </div>
                 </div>
@@ -64,6 +73,7 @@
 
         </div>
     </body>
+    
     <script type="text/javascript" src="{{mix('js/app.js')}}"></script>
 
 </html>

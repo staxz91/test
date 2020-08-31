@@ -37277,13 +37277,26 @@ $(document).on('click', '.ajax-submit', function (e) {
   var form = $(this).closest('form');
   $('.with-error').removeClass('with-error');
   $('.error-span').remove();
+  $('.response-data').html('...');
   $.ajax({
     type: 'POST',
     url: form.attr('action'),
     data: form.serializeArray(),
     success: function success(res) {
       // SUCCESS
-      if (res.responseType == 'success') {} else {
+      if (res.responseType == 'success') {
+        $('.status').html(" Status: ".concat(res.data.result.status, " "));
+        $('.response-time').html("".concat(res.data.result.time, " ms"));
+        $('.general-error').html('');
+      } else {
+        console.log(res);
+
+        if (res.errorMessage && res.errorMessage.error) {
+          $('.status').html("Status: ".concat(res.errorMessage.status));
+          $('.response-time').html("".concat(res.errorMessage.time, " ms"));
+          $('.general-error').html(res.errorMessage.error);
+        }
+
         for (var key in res.errorMessage) {
           if (res.errorMessage[key] && $("[name=".concat(key, "]")).length) {
             form.find("[name=".concat(key, "]")).addClass('with-error');
