@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'proxy'], function () {
+    Route::get('/test', ['uses' => 'ProxyTester@index']);
+    Route::post('/test', ['uses' => 'ProxyTester@checkProxy']);
+});

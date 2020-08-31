@@ -1,1 +1,39 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.form-container{
+
+    form{
+        padding: 15px;
+        border: 1px solid #adb5bd;
+        box-shadow: lawngreen;
+        box-shadow: 7px 7px 7px -1px #adb5bd;
+
+        .form-group{
+            min-height: 55px;
+        }
+    }
+
+    .with-error{
+        border: 1px solid red;
+    }
+
+    .error-span{
+        color: red;
+    }
+
+}
+
+.result-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
